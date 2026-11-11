@@ -35,6 +35,27 @@ docker run --rm hello-world
 docker ps -a --filter name=portainer
 # or: ./VERIFY_INSTALLATION.sh  (saves verify-output.txt)
 ```
+
+## Run the restart command
+
+sudo docker restart portainer
+
+
+docker logs portainer 2>&1 | grep -i -E "setup|token|initial"
+
+docker ps
+
+docker logs CONTAINER_NAME 2>&1
+
+sudo docker logs portainer 2>&1 | grep -i -A 5 -B 5 "token"
+
+## If you still receive 403
+
+## Run:bash
+
+sudo docker logs --since 5m portainer 2>&1 | tail -60
+
+
 Access: `https://localhost:9443` (local/SSH tunnel only). Update [`INSTALLATION_REPORT.md`](INSTALLATION_REPORT.md) and [`VERSION_INFO.md`](VERSION_INFO.md) with real evidence. **PASS required; stop — no integrations.**
 
 ## Files
