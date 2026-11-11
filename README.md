@@ -36,25 +36,39 @@ docker ps -a --filter name=portainer
 # or: ./VERIFY_INSTALLATION.sh  (saves verify-output.txt)
 ```
 
-## Run the restart command
+## Troubleshooting & Maintenance
 
+### Restart Portainer
+```bash
 sudo docker restart portainer
+```
 
+### Check setup/token logs
+```bash
+sudo docker logs portainer 2>&1 | grep -i -E "setup|token|initial"
+```
 
-docker logs portainer 2>&1 | grep -i -E "setup|token|initial"
-
+### List containers
+```bash
 docker ps
+```
 
-docker logs CONTAINER_NAME 2>&1
+### View logs for a specific container
+```bash
+sudo docker logs CONTAINER_NAME 2>&1
+```
+Replace `CONTAINER_NAME` with the target container name or ID.
 
+### Search Portainer logs for token-related messages
+```bash
 sudo docker logs portainer 2>&1 | grep -i -A 5 -B 5 "token"
+```
 
-## If you still receive 403
-
-## Run:bash
-
+### If you still receive a 403 error
+Inspect recent Portainer logs (last 5 minutes):
+```bash
 sudo docker logs --since 5m portainer 2>&1 | tail -60
-
+```
 
 Access: `https://localhost:9443` (local/SSH tunnel only). Update [`INSTALLATION_REPORT.md`](INSTALLATION_REPORT.md) and [`VERSION_INFO.md`](VERSION_INFO.md) with real evidence. **PASS required; stop — no integrations.**
 
